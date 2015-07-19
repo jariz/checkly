@@ -1,0 +1,56 @@
+/* Spinner rotation */
+@-webkit-keyframes spin { to { -webkit-transform: rotate(1080deg); transform: rotate(1080deg) } }
+@keyframes spin { to { -webkit-transform: rotate(1080deg); transform: rotate(1080deg) } }
+
+.spinner {
+  width: 1.75em;
+  height: 1.75em;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 .1875em;
+  will-change: transform;
+  -webkit-animation: spin 2666ms linear infinite;
+  animation: spin 2666ms linear infinite;
+  -webkit-clip-path: circle(.875em at center);
+  clip-path: circle(.875em at center);
+
+  /* Set background to same color as pseudo elements. Defaults to white */
+  background-color: #fff;
+}
+/* sizes */
+.spinner[data-options*="small"] { font-size: 1em }
+.spinner[data-options*="large"] { font-size: 2em }
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  width: 7em;
+  height: 1.75em;
+  background-color: inherit;
+}
+
+@-webkit-keyframes shape-shift-before { to { -webkit-transform: skewX(-45deg) translate(.875em, -.875em); transform: skewX(-45deg) translate(.875em, -.875em) } }
+
+@keyframes shape-shift-before { to { -webkit-transform: skewX(-45deg) translate(.875em, -.875em); transform: skewX(-45deg) translate(.875em, -.875em) } }
+
+.spinner::before {
+  -webkit-transform: skewX(80deg) translate(.875em, -.875em);
+  -ms-transform: skewX(80deg) translate(.875em, -.875em);
+  transform: skewX(80deg) translate(.875em, -.875em);
+  -webkit-animation: shape-shift-before 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+  animation: shape-shift-before 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+}
+
+@-webkit-keyframes shape-shift-after { to { -webkit-transform: skewX(45deg) translate(.875em, .875em); transform: skewX(45deg) translate(.875em, .875em) } }
+
+@keyframes shape-shift-after { to { -webkit-transform: skewX(45deg) translate(.875em, .875em); transform: skewX(45deg) translate(.875em, .875em) } }
+
+.spinner::after {
+  -webkit-transform: skewX(-80deg) translate(.875em, .875em);
+  -ms-transform: skewX(-80deg) translate(.875em, .875em);
+  transform: skewX(-80deg) translate(.875em, .875em);
+  -webkit-animation: shape-shift-after 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+  animation: shape-shift-after 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+}

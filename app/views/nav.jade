@@ -1,0 +1,22 @@
+nav.navbar.navbar-fixed-top.navbar-white
+  .container
+    .navbar-header
+      a.navbar-brand(href='/') checkly
+    div.nav.navbar-nav.navbar-right
+      if user
+        .btn-group
+          button(type='button', class='btn btn-danger dropdown-toggle', data-toggle='dropdown', style='min-width:220px;')
+            =user.name
+            | &nbsp;
+            span.caret
+          ul.dropdown-menu
+            li: a(href='match')
+              i.mdi-social-people.pull-left
+              | Compare
+            li: a(href='auth/remove?csrf='+csrf)
+              i.mdi-content-clear.pull-left
+              | Remove from checkly
+            li: a(href='auth/remove?reauth=1&csrf='+csrf)
+              i.mdi-notification-sync.pull-left
+              | Redownload subreddits
+

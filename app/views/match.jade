@@ -1,0 +1,59 @@
+extends layout
+
+append js
+  script(src="/js/matches.js")
+  script(src="/components/handlebars/handlebars.min.js")
+
+block footer
+  //disables footer because i'm too lazy to figure out how to make it work on this page.
+
+block content
+  .matches
+    .container
+      .panel.panel-default
+        .loading
+          .panel-body
+            .spinner(style='color:#2196F3', data-options='large')
+            p.text-muted.text-center
+              if firsttime
+                | Getting subreddits for the first time...
+        .panel-heading.done-loading(style='display:none')
+          | Matches
+          span.pull-right.text-muted Tip: check this page every now and then, new people might join!
+        .panel-body.done-loading(style='display:none')
+            .list-group(id='matches')
+            script#matches-template(type='text/plain')
+              | {{#if nothing}}
+              h2.text-muted.text-center(style='padding: 50px 0 0;margin-bottom:0;'): i.mdi-alert-warning
+              p.text-muted.text-center(style='padding: 0 0 50px;') No similar accounts found, check back later!
+              | {{/if}}
+              | {{#each matches}}
+              .list-group-item
+                .row-action-primary: i.mdi-action-perm-identity
+                .row-content
+                  .least-content
+                    | {{this.score}}% in common
+                    br
+                    a.btn.btn-xs.btn-info.pull-right.btn-raised(href='https://www.reddit.com/message/compose/?to={{this.name}}&subject=We+have+{{this.similar.length}}+subreddits+in+common&message=We%20have%20the%20following%20subreddits%20in%20common%3A%20%20%0A{{#each this.similar}}%0A-%20/r/{{this}}%20%20{{/each}}')
+                      i.mdi-communication-email
+                  h4.list-group-item-heading: a(href='https://reddit.com/u/{{this.name}}', target='_blank') {{this.name}}
+                  .list-group-item-text
+                  | You have&nbsp;
+                  a.submodal(href='#', data-subreddits='{{#each this.similar}}{{this}},{{/each}}'){{this.similar.length}} subreddits
+                  | &nbsp;in common
+              .list-group-separator
+              | {{/each}}
+            script#subdiag-template(type='text/plain')
+              ul.nav.nav-pills.nav-stacked(style='margin-top:30px;')
+                | {{#each subreddits}}
+                li: a(href="https://reddit.com/r/{{this}}") {{this}}
+                | {{/each}}
+
+
+  #subDiag.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal") &times;
+          h4.modal-title Subreddits you both have in common
+        .modal-body

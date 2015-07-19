@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  .jumbotron
+    .inside
+      h2 Find another you, with your Reddit account!
+      p Compare your Reddit account to others that have used checkly, find people with the same interests as you!
+      a(href=user ? '/match' : '/auth', class='btn btn-raised btn-md btn-default')= user ? 'Compare' : 'Authorize'
+  .container
+
+    if messages.info
+      .alert.alert-success
+        span!=messages.info
+
+    h2 What?
+    .row
+      .col-lg-3.col-lg-offset-3
+        .sellingpoint.shadow-z-1
+          i.mdi-action-open-in-browser
+        h4.text-center Log in with your Reddit account
+        p.text-muted Just simply give checkly access and you're done. No manual entering of your subscribed subreddits.
+      .col-lg-3
+        .sellingpoint.shadow-z-1
+          i.mdi-social-people
+        h4.text-center Compare!
+        p.text-muted Checkly will display the users that have most subreddits in common with you.
+
+    h2 FAQ
+    .row
+      .col-lg-6
+        h5 Why?
+        p
+          | I made this with a domain I still had lying around after reading&nbsp;
+          a(href='https://www.reddit.com/r/SomebodyMakeThis/comments/3dl80j/a_program_where_one_can_enter_their_reddit/') this thread
+          | &nbsp;and the other submissions seemed to lack simplicity and a nice UI, so here you go!
+      .col-lg-6
+        h5 Why does it need permission to my profile and subreddits?
+        p checkly needs to retrieve your subreddits list to compare those with other checkly users. It needs your profile to know what your username is so other checkly users can find you.
+    .row
+      .col-lg-6
+        h5 Muh data.
+        p
+          | This is a project made for fun in a single weekend. As with all my 'for-fun' projects, it's open source as well.
+          br
+          | Your data will never be used in any other way than the purpose described on this page.
+          br
+          | If you don't trust me, you can go and run your own, but that kind of defeats the purpose doesn't it?
+      .col-lg-6
+        h5 I don't want to be found anymore.
+        p When you don't want checkly to display your profile to like minded users anymore, simply click remove account in the dropdown in the top right.
+    .row
+      //.col-lg-6
+        h5 Why do defaults not count?
+        p Partially because of API limitations, but also because being subscribed to a default does not make you 'stand out' at all. checkly is about 'niche' interests, aka subreddits that not everyone is subscribed to.

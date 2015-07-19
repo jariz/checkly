@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width')
+    title= title
+    block css
+      link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.min.css')
+      link(rel='stylesheet', href='/components/bootstrap-material-design/dist/css/material.min.css')
+      link(rel='stylesheet', href='/components/bootstrap-material-design/dist/css/roboto.min.css')
+      link(rel='stylesheet', href='/components/bootstrap-material-design/dist/css/ripples.min.css')
+      link(rel='stylesheet', href='/css/spinner.css')
+      link(rel='stylesheet', href='/css/style.css')
+  body
+    include nav
+    block content
+    block footer
+      include footer
+
+    block js
+      script(src='/components/jquery/dist/jquery.min.js')
+      script(src='/components/bootstrap-material-design/dist/js/material.min.js')
+      script(src='/components/bootstrap-material-design/dist/js/ripples.min.js')
+      script(src='/components/bootstrap/dist/js/bootstrap.min.js')
+      if ENV_DEVELOPMENT
+        script(src='http://localhost:35729/livereload.js')
+      script $.material.init()

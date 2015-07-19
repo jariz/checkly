@@ -1,0 +1,51 @@
+body {
+  margin: 0; }
+  body .navbar.navbar-white .dropdown-menu a:hover, body .navbar.navbar-white .dropdown-menu a:focus, body .navbar.navbar-white .dropdown-menu a :active {
+    color: #009688 !important; }
+  body h5, body h6 {
+    font-weight: 500; }
+  body .jumbotron {
+    margin-top: 50px;
+    text-align: center;
+    box-shadow: none !important;
+    color: #fff;
+    padding: 150px 0;
+    background: #2196F3; }
+    body .jumbotron .inside {
+      background-color: #2196F3; }
+    body .jumbotron h1 {
+      line-height: 70px; }
+    body .jumbotron p {
+      color: #eee;
+      font-size: inherit; }
+    body .jumbotron .btn.btn-default, body .jumbotron .btn.btn-default:hover, body .jumbotron .btn.btn-default:focus, body .jumbotron .btn.btn-default:active {
+      background-color: #fff; }
+  body .matches {
+    padding-top: 100px;
+    background: #2196F3;
+    height: 200px; }
+    body .matches .container .panel .panel-heading {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      line-height: 80px;
+      font-size: 22px;
+      padding: 10px 30px; }
+      body .matches .container .panel .panel-heading span {
+        font-size: 12px; }
+    body .matches .container .spinner {
+      display: block;
+      margin: 200px auto; }
+  body .sellingpoint {
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    padding: 17px; }
+    body .sellingpoint i {
+      font-size: 66px !important; }
+  body .footer {
+    margin-top: 100px;
+    margin-bottom: 0;
+    box-shadow: none;
+    border-radius: 0; }

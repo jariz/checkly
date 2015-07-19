@@ -1,0 +1,92 @@
+body {
+  //margin: 50px 0 0;
+  margin:0;
+
+  .navbar.navbar-white .dropdown-menu a {
+    &:hover, &:focus, :active {
+      color: #009688 !important;
+    }
+  }
+
+  h5, h6 {
+    font-weight: 500;
+  }
+
+  .jumbotron {
+    margin-top:50px;
+    text-align: center;
+    box-shadow:none !important;
+    color:#fff;
+    padding:150px 0;
+    background: #2196F3; //url("/img/jumbo-bg.png");
+
+    .inside {
+      background-color: #2196F3;
+    }
+
+    h1 {
+      line-height: 70px;
+    }
+
+    p {
+      color:#eee;
+      font-size:inherit;
+    }
+
+    .btn.btn-default {
+      background-color: #fff;
+
+      &:hover, &:focus, &:active {
+        @extend .btn.btn-default;
+      }
+    }
+  }
+
+  .matches {
+    padding-top:100px;
+    background: #2196F3;
+    height:200px; //ooohhh nasty hack
+    .container {
+      .panel {
+        //min-height:400px;
+
+        .panel-heading {
+          background: #fff;
+          border-bottom: 1px solid #eee;
+          line-height: 80px;
+          font-size: 22px;
+          padding: 10px 30px;
+          span {
+            font-size:12px;
+          }
+        }
+      }
+      .spinner {
+        display: block;
+        margin: 200px auto;
+      }
+    }
+  }
+
+  .sellingpoint {
+    margin: 0 auto 20px;
+    background: #fff;
+    //box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+    border-radius:50%;
+    width:100px;
+    height:100px;
+
+    i {
+      font-size:66px !important;;
+    }
+
+    padding:17px;
+  }
+
+  .footer {
+    margin-top:100px;
+    margin-bottom: 0;
+    box-shadow:none;
+    border-radius: 0;
+  }
+}
