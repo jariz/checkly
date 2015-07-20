@@ -5,12 +5,9 @@ User = mongoose.model 'User'
 redditoauth = require 'reddit-oauth'
 config = config = require('../../config/config')
 reddit = new redditoauth config.reddit
-defaults = require '../../config/defaults'
 
 module.exports = (app) ->
   app.use '/async', router
-
-removeDefaults = (subs) -> subs.filter (sub) -> defaults.indexOf(sub) is -1
 
 getProfile = (req, next, cb) ->
   reddit.access_token = req.session.access_token
@@ -62,8 +59,7 @@ router.get '/match', (req, res, next) ->
         if err then next err
 
         output = []
-        similars = removeDefaults similars
-        usersubs = removeDefaults user.subreddits
+        usersubs = user.subredditsFiltered
 
         for similar in similars
           samesubs = []
