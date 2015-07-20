@@ -52,3 +52,10 @@ router.get '/remove', (req, res, next) ->
             req.flash 'info', '<strong>You have removed your account from checkly</strong>, it won\'t appear in match results of other users anymore. If you want it to appear again, click \'Authorize\' at the top.'
             res.redirect '/'
       else next err
+
+router.get '/logout', (req, res, next) ->
+  if req.query.csrf != req.session.csrfSecret then next new Error('Invalid CSRF')
+  else
+    req.session.regenerate ->
+      req.flash 'info', 'You have logged out.'
+      res.redirect '/'

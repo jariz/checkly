@@ -10,6 +10,9 @@ nav.navbar.navbar-fixed-top.navbar-white
             | &nbsp;
             span.caret
           ul.dropdown-menu
+            li: a(href='auth/logout?csrf='+csrf)
+              i.mdi-communication-vpn-key.pull-left
+              | Log out
             li: a(href='match')
               i.mdi-social-people.pull-left
               | Compare
