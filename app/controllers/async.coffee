@@ -5,9 +5,12 @@ User = mongoose.model 'User'
 redditoauth = require 'reddit-oauth'
 config = config = require('../../config/config')
 reddit = new redditoauth config.reddit
+defaults = require '../../config/defaults'
 
 module.exports = (app) ->
   app.use '/async', router
+
+removeDefaults = (subs) -> subs.filter (sub) -> defaults.indexOf(sub) is -1
 
 getProfile = (req, next, cb) ->
   reddit.access_token = req.session.access_token
@@ -37,9 +40,6 @@ getProfile = (req, next, cb) ->
 
             if getNext then getNext()
             else
-              #done
-              console.log "all done. got " + subs.length + " subs"
-              console.log "saving......................"
               usermodel = new User
                 user: user,
                 subreddits: subs
@@ -62,14 +62,17 @@ router.get '/match', (req, res, next) ->
         if err then next err
 
         output = []
+        similars = removeDefaults similars
+        usersubs = removeDefaults user.subreddits
+
         for similar in similars
           samesubs = []
-          samesubs.push(subreddit) for subreddit in similar.subreddits when user.subreddits.indexOf(subreddit) != -1
+          samesubs.push(subreddit) for subreddit in similar.subreddits when usersubs.indexOf(subreddit) != -1
 
           output.push
             name: similar.user.name
             similar: samesubs
-            score: parseFloat(((samesubs.length / user.subreddits.length) * 100).toFixed(2))
+            score: parseFloat(((samesubs.length / usersubs.length) * 100).toFixed(2))
 
         output.sort (a, b) -> b.score - a.score
         output.splice 10, Number.MAX_VALUE
