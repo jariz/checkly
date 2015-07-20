@@ -71,8 +71,7 @@ router.get '/match', (req, res, next) ->
             similar: samesubs
             score: parseFloat(((samesubs.length / user.subreddits.length) * 100).toFixed(2))
 
-        console.log typeof output[0].score
-        output.sort (a, b) -> a.score < b.score
+        output = output.sort (a, b) -> a.score < b.score
         output.splice 10, Number.MAX_VALUE
 
         res.send output
